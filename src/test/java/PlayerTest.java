@@ -16,6 +16,6 @@ public class PlayerTest {
         Piece tRex = new Piece(pieceName);
         Player player = new Player(null, tRex);
 
-        assertEquals(player.getPiece(), tRex);
+        assertEquals(tRex, player.getPiece());
     }
 }
