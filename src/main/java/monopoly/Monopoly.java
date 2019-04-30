@@ -49,7 +49,7 @@ public class Monopoly {
         System.out.println("Game starts");
 
         for (int i = 0; i < NB_ROUNDS; i++){
-            System.out.println("Round " + (i + 1));
+            System.out.println("--- Round " + (i + 1) + " ---");
             round();
         }
     }
