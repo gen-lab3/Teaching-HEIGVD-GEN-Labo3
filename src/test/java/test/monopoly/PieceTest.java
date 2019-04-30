@@ -1,3 +1,7 @@
+package test.monopoly;
+
+import monopoly.Piece;
+import monopoly.Square;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
