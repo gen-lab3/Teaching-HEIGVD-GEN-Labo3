@@ -24,13 +24,20 @@ public class Player {
     public void takeTurn(Die ...dice) {
         int facesValue = 0;
 
+        System.out.print(name + " throw dice, got: ");
         for (Die die : dice) {
             die.roll();
-            facesValue += die.getFaceValue();
+            int fv = die.getFaceValue();
+
+            System.out.print(fv + " ");
+
+            facesValue += fv;
         }
 
         Square oldLocation = piece.getLocation();
         Square newLocation = board.getSquare(oldLocation, facesValue);
         piece.setLocation(newLocation);
+
+        System.out.printf("\n%s landed on %s\n\n", name, newLocation);
     }
 }
