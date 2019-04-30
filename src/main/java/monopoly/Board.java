@@ -3,7 +3,7 @@ package monopoly;
 import java.util.ArrayList;
 
 public class Board {
-    private static final int BOARD_SIZE = 40;
+    public static final int BOARD_SIZE = 40;
     private ArrayList<Square> squares = new ArrayList<>();
 
     public Board() {
