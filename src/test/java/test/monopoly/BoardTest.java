@@ -44,4 +44,9 @@ public class BoardTest {
     public void checkBoardSize(){
         assertEquals(board.BOARD_SIZE, squares.size());
     }
+
+    @Test
+    public void startSquareHasRightName(){
+        assertEquals(board.START_NAME, board.getStartSquare().getName());
+    }
 }
