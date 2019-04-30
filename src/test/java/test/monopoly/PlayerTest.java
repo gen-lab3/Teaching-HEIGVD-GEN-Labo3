@@ -10,6 +10,7 @@ import test.monopoly.mock.MockDie;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 
+import static java.lang.Math.min;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class PlayerTest {
@@ -93,5 +94,28 @@ public class PlayerTest {
         player.addCash(cash);
 
         assertEquals(cash, player.getNetWorth());
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {0, 1500, 200})
+    public void APlayerCanLoseCash(int cash){
+        Player player = new Player("John", board);
+
+        player.addCash(cash);
+
+        int wealth = player.getNetWorth();
+
+        int amountToLose = 200;
+
+        player.reduceCash(amountToLose);
+
+        int remaining = wealth - amountToLose;
+
+        if(remaining < 0){
+            assertEquals(0, player.getNetWorth());
+        }else{
+            assertEquals(remaining, player.getNetWorth());
+        }
+
     }
 }

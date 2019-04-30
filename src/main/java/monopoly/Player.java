@@ -46,6 +46,14 @@ public class Player {
         this.cash += cash;
     }
 
+    public void reduceCash(int amount){
+        if(cash - amount < 0){
+            cash = 0;
+        }else{
+            cash -= amount;
+        }
+    }
+
     public int getNetWorth(){
         return cash;
     }
