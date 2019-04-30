@@ -58,4 +58,30 @@ public class PlayerTest {
                 player.getPiece().getLocation());
 
     }
+
+    @Test
+    public void APlayerCanMakeMultipleTurn() throws NoSuchFieldException, IllegalAccessException {
+        Die[] mockDice = {
+                new MockDie(21),
+                new MockDie(20)
+        };
+
+        Board board = new Board();
+        Player player = new Player("jean", board);
+
+        // Get board private field
+        Field field = board.getClass().getDeclaredField("squares");
+        field.setAccessible(true);
+        ArrayList<Square> squares = (ArrayList<Square>)field.get(board);
+
+        player.takeTurn(mockDice);
+
+        assertSame(squares.get(1),
+                player.getPiece().getLocation());
+
+        player.takeTurn(mockDice);
+
+        assertSame(squares.get(2),
+                player.getPiece().getLocation());
+    }
 }
