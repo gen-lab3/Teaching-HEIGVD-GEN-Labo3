@@ -1,2 +1,2 @@
-# Gen Labo 3 - Monopoly
+# Gen Labo 3 - monopoly.Monopoly
 
