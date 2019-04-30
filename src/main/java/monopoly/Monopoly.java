@@ -20,9 +20,22 @@ public class Monopoly {
             return;
         }
 
-        Monopoly monopoly = new Monopoly(Integer.parseInt(args[0]));
+        try{
+            int nbPlayers = Integer.parseInt(args[0]);
 
-        monopoly.playGame();
+            if(nbPlayers < 2 || nbPlayers > 8){
+                System.err.println("You can play only from 2 to 8 players");
+                return;
+            }
+
+
+            Monopoly monopoly = new Monopoly(nbPlayers);
+
+            monopoly.playGame();
+        } catch (NumberFormatException e){
+            System.err.println("The first param must be a number");
+        }
+
     }
 
     public Monopoly(int playerCount){
@@ -46,7 +59,7 @@ public class Monopoly {
     public void playGame(){
         initGame();
 
-        System.out.println("Game starts");
+        System.out.println("\nGAME STARTS!\n");
 
         for (int i = 0; i < NB_ROUNDS; i++){
             System.out.println("--- Round " + (i + 1) + " ---");
