@@ -1,3 +1,5 @@
+package monopoly;
+
 public class Square {
     private String name;
 
@@ -6,6 +8,10 @@ public class Square {
     }
 
     public String getName() {
+        return name;
+    }
+
+    public String toString(){
         return name;
     }
 }

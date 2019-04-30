@@ -1,3 +1,5 @@
+package monopoly;
+
 import java.util.ArrayList;
 
 public class Board {
@@ -8,7 +10,7 @@ public class Board {
         squares.add(new Square("Go"));
 
         for(int i = 1; i < BOARD_SIZE; ++i) {
-            squares.add(new Square("Square" + i));
+            squares.add(new Square("monopoly.Square" + i));
         }
     }
 

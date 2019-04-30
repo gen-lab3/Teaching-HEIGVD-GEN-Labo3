@@ -1,8 +1,10 @@
+package monopoly;
+
 public class Piece {
     private String name;
     private Square location;
 
-    Piece(String name){
+    public Piece(String name){
         this.name = name;
     }
 
