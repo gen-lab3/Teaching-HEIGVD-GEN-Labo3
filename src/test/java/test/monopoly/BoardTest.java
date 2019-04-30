@@ -1,3 +1,8 @@
+package test.monopoly;
+
+import monopoly.Board;
+import monopoly.Piece;
+import monopoly.Square;
 import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Field;

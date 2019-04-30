@@ -1,4 +1,6 @@
-import org.junit.jupiter.api.BeforeAll;
+package test.monopoly;
+
+import monopoly.Die;
 import org.junit.jupiter.api.RepeatedTest;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
