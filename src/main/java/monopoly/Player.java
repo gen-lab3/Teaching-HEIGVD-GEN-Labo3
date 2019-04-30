@@ -9,7 +9,7 @@ public class Player {
         this.name = name;
         this.board = board;
 
-        this.piece = new Piece("Piece");
+        this.piece = new Piece("Piece de " + name);
         this.piece.setLocation(board.getStartSquare());
     }
 
