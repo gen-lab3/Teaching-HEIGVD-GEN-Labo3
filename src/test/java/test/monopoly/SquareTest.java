@@ -1,9 +1,6 @@
 package test.monopoly;
 
-import monopoly.Board;
-import monopoly.Player;
-import monopoly.RegularSquare;
-import monopoly.Square;
+import monopoly.*;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertSame;
@@ -39,7 +36,7 @@ public class SquareTest {
         int cash = player.getNetWorth();
         player.getPiece().getLocation().landedOn(player);
 
-        assertEquals(cash+200, player.getNetWorth());
+        assertEquals(cash + GoSquare.STARTCASH, player.getNetWorth());
     }
 
     @Test
@@ -52,7 +49,7 @@ public class SquareTest {
         player.getPiece().setLocation(board.getSquare(board.getStartSquare(), 20));
         player.getPiece().getLocation().landedOn(player);
 
-        assertEquals(cash - 200, player.getNetWorth());
+        assertEquals(cash - IncomeTaxSquare.MAXTAX, player.getNetWorth());
     }
 
     @Test
@@ -66,6 +63,6 @@ public class SquareTest {
         player.getPiece().setLocation(board.getSquare(board.getStartSquare(), 20));
         player.getPiece().getLocation().landedOn(player);
 
-        assertEquals(cash - 0.1 * cash, player.getNetWorth());
+        assertEquals(cash - IncomeTaxSquare.TAXPERCENT * cash, player.getNetWorth());
     }
 }
