@@ -1,6 +1,7 @@
 package test.monopoly;
 
 import monopoly.Piece;
+import monopoly.RegularSquare;
 import monopoly.Square;
 import org.junit.jupiter.api.Test;
 
@@ -19,7 +20,7 @@ public class PieceTest {
     @Test
     public void pieceLocationIsTheRightOne() {
         Piece piece = new Piece("T-Rex");
-        Square square = new Square("test");
+        Square square = new RegularSquare("test");
         piece.setLocation(square);
 
         assertSame(piece.getLocation(), square);
