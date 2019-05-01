@@ -22,7 +22,7 @@ public class Cup {
     public int getTotal(){
         int sum = 0;
 
-        for(Die d : dice){
+        for(Die die : dice){
             sum += d.getFaceValue();
         }
         return sum;
