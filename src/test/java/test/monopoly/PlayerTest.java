@@ -97,7 +97,7 @@ public class PlayerTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {0, 1500, 200})
+    @ValueSource(ints = {200, 1500})
     public void APlayerCanLoseCash(int cash){
         Player player = new Player("John", board);
 
@@ -111,11 +111,18 @@ public class PlayerTest {
 
         int remaining = wealth - amountToLose;
 
-        if(remaining < 0){
-            assertEquals(0, player.getNetWorth());
-        }else{
-            assertEquals(remaining, player.getNetWorth());
-        }
+        assertEquals(remaining, player.getNetWorth());
 
+    }
+
+    @Test
+    public void APlayerCannotHaveANegativeWealth(){
+        Player player = new Player("Merin", board);
+
+        player.addCash(100);
+
+        player.reduceCash(1000);
+
+        assertEquals(0, player.getNetWorth());
     }
 }
