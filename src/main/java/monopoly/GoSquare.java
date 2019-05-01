@@ -7,6 +7,6 @@ public class GoSquare extends Square {
 
     @Override
     public void landedOn(Player p) {
-        // Add cash
+        p.addCash(200);
     }
 }
