@@ -8,8 +8,10 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import java.util.HashSet;
+import java.util.Set;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class CupTest {
     private static int DICE_NB = 2;
@@ -40,8 +42,23 @@ public class CupTest {
 
     @Test
     public void allRangeFoundInCup(){
-        Integer[] expected = new Integer[CUP_MAX_VALUE - CUP_MIN_VALUE];
+        Integer[] expected = new Integer[CUP_MAX_VALUE - CUP_MIN_VALUE + 1];
 
+        for(int i = CUP_MIN_VALUE; i <= CUP_MAX_VALUE; ++i){
+            expected[i - CUP_MIN_VALUE] = i;
+        }
+
+        Set<Integer> actualValues = new HashSet<>();
+
+        for(int j = 0; j < expected.length *20; ++j){
+            cup.roll();
+            actualValues.add(cup.getTotal());
+        }
+
+        Integer[] actual = new Integer[actualValues.size()];
+        actualValues.toArray(actual);
+
+        assertArrayEquals(expected, actual);
 
     }
 
