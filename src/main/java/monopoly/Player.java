@@ -4,6 +4,7 @@ public class Player {
     private String name;
     private Piece piece;
     private Board board;
+    private int cash = 0;
 
     public Player(String name, Board board){
         this.name = name;
@@ -39,5 +40,21 @@ public class Player {
         piece.setLocation(newLocation);
 
         System.out.printf("\n%s landed on %s\n\n", name, newLocation);
+    }
+
+    public void addCash(int cash){
+        this.cash += cash;
+    }
+
+    public void reduceCash(int amount){
+        if(cash - amount < 0){
+            cash = 0;
+        }else{
+            cash -= amount;
+        }
+    }
+
+    public int getNetWorth(){
+        return cash;
     }
 }

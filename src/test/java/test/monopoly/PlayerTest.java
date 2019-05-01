@@ -3,11 +3,14 @@ package test.monopoly;
 import monopoly.*;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import test.monopoly.mock.MockDie;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 
+import static java.lang.Math.min;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class PlayerTest {
@@ -81,5 +84,45 @@ public class PlayerTest {
 
         assertSame(squares.get(2),
                 player.getPiece().getLocation());
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {0, 1500, 200, Integer.MAX_VALUE})
+    public void APlayerCanGetCash(int cash){
+        Player player = new Player("John", board);
+
+        player.addCash(cash);
+
+        assertEquals(cash, player.getNetWorth());
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {200, 1500})
+    public void APlayerCanLoseCash(int cash){
+        Player player = new Player("John", board);
+
+        player.addCash(cash);
+
+        int wealth = player.getNetWorth();
+
+        int amountToLose = 200;
+
+        player.reduceCash(amountToLose);
+
+        int remaining = wealth - amountToLose;
+
+        assertEquals(remaining, player.getNetWorth());
+
+    }
+
+    @Test
+    public void APlayerCannotHaveANegativeWealth(){
+        Player player = new Player("Merin", board);
+
+        player.addCash(100);
+
+        player.reduceCash(1000);
+
+        assertEquals(0, player.getNetWorth());
     }
 }
