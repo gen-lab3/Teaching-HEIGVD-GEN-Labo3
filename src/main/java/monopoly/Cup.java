@@ -1,12 +1,16 @@
 package monopoly;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Cup {
-    private List<Die> dice;
+    private List<Die> dice = new ArrayList<>();
 
-    public Cup(List<Die> dice){
-        this.dice = dice;
+    public Cup(int diceNb){
+
+        for(int i = 0; i < diceNb; ++i){
+          dice.add(i, new Die());
+        }
     }
 
     public void roll(){
@@ -22,5 +26,9 @@ public class Cup {
             sum += d.getFaceValue();
         }
         return sum;
+    }
+
+    public int numberOfDice(){
+        return dice.size();
     }
 }
