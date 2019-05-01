@@ -10,7 +10,6 @@ import test.monopoly.mock.MockDie;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 
-import static java.lang.Math.min;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class PlayerTest {
