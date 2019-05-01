@@ -14,8 +14,8 @@ public class Cup {
     }
 
     public void roll(){
-        for(Die d : dice){
-            d.roll();
+        for(Die die : dice){
+            die.roll();
         }
     }
 
@@ -23,7 +23,7 @@ public class Cup {
         int sum = 0;
 
         for(Die die : dice){
-            sum += d.getFaceValue();
+            sum += die.getFaceValue();
         }
         return sum;
     }
