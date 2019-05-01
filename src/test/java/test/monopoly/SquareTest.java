@@ -1,9 +1,6 @@
 package test.monopoly;
 
-import monopoly.Board;
-import monopoly.Player;
-import monopoly.RegularSquare;
-import monopoly.Square;
+import monopoly.*;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertSame;
@@ -19,15 +16,50 @@ public class SquareTest {
 
     @Test
     public void GoToJailSquareMovesPlayerToJail() {
-        Board board = new Board();
-        Player player = new Player("test", board);
+        Player player = new Player("test", new Board());
 
-        player.getPiece().setLocation(board.getSquare(board.getStartSquare(), 30));
+        RegularSquare jail = new RegularSquare("Jail");
+        player.getPiece().setLocation(new GoToJailSquare("Gtj", jail));
         player.getPiece().getLocation().landedOn(player);
 
         assertSame(
-                board.getSquare(board.getStartSquare(), 10),
+                jail,
                 player.getPiece().getLocation()
         );
+    }
+
+    @Test
+    public void GoSquareGive200ToPlayer() {
+        Player player = new Player("test", new Board());
+
+        int cash = player.getNetWorth();
+        player.getPiece().getLocation().landedOn(player);
+
+        assertEquals(cash + GoSquare.STARTCASH, player.getNetWorth());
+    }
+
+    @Test
+    public void IncomeTaxIs200WhenPlayer10PercentOfPlayerWorthIsMoreThan200() {
+        Player player = new Player("test", new Board());
+
+        player.addCash(5000);
+        int cash = player.getNetWorth();
+        player.getPiece().setLocation(new IncomeTaxSquare("It"));
+        player.getPiece().getLocation().landedOn(player);
+
+        assertEquals(cash - IncomeTaxSquare.MAXTAX, player.getNetWorth());
+    }
+
+    @Test
+    public void IncomeTaxIs10PercentOfPlayerWorthWhenPlayer10PercentWorthIsLessThan200() {
+        Player player = new Player("test", new Board());
+
+        player.reduceCash(player.getNetWorth() > 0 ? player.getNetWorth() : 0);
+        player.addCash(300);
+        int cash = player.getNetWorth();
+        player.getPiece().setLocation(new IncomeTaxSquare("It"));
+        player.getPiece().getLocation().landedOn(player);
+
+        assertEquals(cash - IncomeTaxSquare.TAXPERCENT * cash, player.getNetWorth());
     }
 }
