@@ -3,7 +3,7 @@ package test.monopoly;
 import monopoly.Board;
 import monopoly.Piece;
 import monopoly.Square;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Field;
@@ -16,8 +16,8 @@ public class BoardTest {
     static ArrayList<Square> squares;
     static Board board;
 
-    @BeforeAll
-    public static void InitBoard() throws NoSuchFieldException, IllegalAccessException {
+    @BeforeEach
+    public void InitBoard() throws NoSuchFieldException, IllegalAccessException {
         board = new Board();
 
         // Get board private field
@@ -27,7 +27,7 @@ public class BoardTest {
     }
 
     @Test
-    public void newLocationIsTheRightOne() throws NoSuchFieldException, IllegalAccessException {
+    public void newLocationIsTheRightOne() {
         Piece piece = new Piece("T-Rex");
         piece.setLocation(board.getStartSquare());
 
