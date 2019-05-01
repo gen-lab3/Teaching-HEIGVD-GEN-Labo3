@@ -30,4 +30,42 @@ public class SquareTest {
                 player.getPiece().getLocation()
         );
     }
+
+    @Test
+    public void GoSquareGive200ToPlayer() {
+        Board board = new Board();
+        Player player = new Player("test", board);
+
+        int cash = player.getNetWorth();
+        player.getPiece().getLocation().landedOn(player);
+
+        assertEquals(cash+200, player.getNetWorth());
+    }
+
+    @Test
+    public void IncomeTaxIs200WhenPlayer10PercentOfPlayerWorthIsMoreThan200() {
+        Board board = new Board();
+        Player player = new Player("test", board);
+
+        player.addCash(5000);
+        int cash = player.getNetWorth();
+        player.getPiece().setLocation(board.getSquare(board.getStartSquare(), 20));
+        player.getPiece().getLocation().landedOn(player);
+
+        assertEquals(cash - 200, player.getNetWorth());
+    }
+
+    @Test
+    public void IncomeTaxIs10PercentOfPlayerWorthWhenPlayer10PercentWorthIsLessThan200() {
+        Board board = new Board();
+        Player player = new Player("test", board);
+
+        player.reduceCash(player.getNetWorth() > 0 ? player.getNetWorth() : 0);
+        player.addCash(300);
+        int cash = player.getNetWorth();
+        player.getPiece().setLocation(board.getSquare(board.getStartSquare(), 20));
+        player.getPiece().getLocation().landedOn(player);
+
+        assertEquals(cash - 0.1 * cash, player.getNetWorth());
+    }
 }
