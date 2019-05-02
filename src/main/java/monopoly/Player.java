@@ -22,22 +22,19 @@ public class Player {
         return piece;
     }
 
-    public void takeTurn(Die ...dice) {
-        int facesValue = 0;
+    public void takeTurn(Cup cup) {
 
-        System.out.print(name + " throw dice, got: ");
-        for (Die die : dice) {
-            die.roll();
-            int fv = die.getFaceValue();
+        cup.roll();
+        int facesValue = cup.getTotal();
 
-            System.out.print(fv + " ");
-
-            facesValue += fv;
-        }
+        System.out.printf("%s throw dice, got: %s", name, cup);
 
         Square oldLocation = piece.getLocation();
+
         Square newLocation = board.getSquare(oldLocation, facesValue);
+
         piece.setLocation(newLocation);
+        newLocation.landedOn(this);
 
         System.out.printf("\n%s landed on %s\n\n", name, newLocation);
     }

@@ -31,4 +31,13 @@ public class Cup {
     public int numberOfDice(){
         return dice.size();
     }
+
+    public String toString(){
+        String diceValues = "";
+        for(Die die : dice){
+            diceValues += " " + die.getFaceValue();
+        }
+
+        return diceValues;
+    }
 }
