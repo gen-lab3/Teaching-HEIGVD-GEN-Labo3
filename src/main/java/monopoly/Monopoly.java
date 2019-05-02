@@ -10,7 +10,7 @@ public class Monopoly {
 
     private int playerCount = 2;
 
-    private Die[] dice;
+    private Cup cup;
     private Board board;
     private Player[] players;
 
@@ -44,12 +44,8 @@ public class Monopoly {
 
     private void initGame(){
         board = new Board();
-        dice = new Die[NB_DICE];
+        cup = new Cup(NB_DICE);
         players = new Player[playerCount];
-
-        for (int i = 0; i < NB_DICE; i++){
-            dice[i] = new Die();
-        }
 
         for (int i = 0; i < playerCount; i++){
             players[i] = new Player("Player " + i, board);
@@ -69,7 +65,7 @@ public class Monopoly {
 
     private void round(){
         for(Player player: players){
-            player.takeTurn(dice);
+            player.takeTurn(cup);
         }
     }
 }
