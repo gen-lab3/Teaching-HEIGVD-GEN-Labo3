@@ -1,13 +1,10 @@
 package test.monopoly;
 
 import monopoly.Die;
-import org.junit.AfterClass;
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;

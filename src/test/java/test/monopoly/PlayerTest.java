@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import test.monopoly.mock.MockCup;
-import test.monopoly.mock.MockDie;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -44,7 +43,7 @@ public class PlayerTest {
     }
 
     @Test
-    public void APlayerCanTakeTurn() throws NoSuchFieldException, IllegalAccessException {
+    public void APlayerCanTakeTurn(){
         Player player = new Player("jean", board);
 
         player.takeTurn(new MockCup(6, 6));
@@ -67,7 +66,7 @@ public class PlayerTest {
     }
 
     @Test
-    public void APlayerCanMakeMultipleTurn() throws NoSuchFieldException, IllegalAccessException {
+    public void APlayerCanMakeMultipleTurn(){
         Cup cup = new MockCup(21, 20);
 
         Player player = new Player("jean", board);

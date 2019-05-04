@@ -1,7 +1,6 @@
 package test.monopoly.mock;
 
 import monopoly.Cup;
-import monopoly.Die;
 
 public class MockCup extends Cup {
 

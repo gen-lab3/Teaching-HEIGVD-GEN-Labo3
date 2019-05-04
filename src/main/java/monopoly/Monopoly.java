@@ -1,8 +1,5 @@
 package monopoly;
 
-import javax.swing.text.StyledEditorKit;
-import java.util.ArrayList;
-
 public class Monopoly {
 
     private static final int NB_ROUNDS = 20;
@@ -49,6 +46,7 @@ public class Monopoly {
 
         for (int i = 0; i < playerCount; i++){
             players[i] = new Player("Player " + i, board);
+            players[i].addCash(1500);
         }
     }
 
